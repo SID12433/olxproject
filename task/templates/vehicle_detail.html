@@ -1,0 +1,40 @@
+
+{%extends 'base.html'%}
+
+{%block title_block%}
+
+<title>Vehicle Details</title>
+
+{%endblock%}
+
+{%block body_block%}
+
+<div class="container">
+  <div class="row mt-5 ">
+      <div class="col-4"></div>
+      <div class="col-4 ">
+
+          <div class="card align-center" style="width: 18rem;">
+              <div class="card-header ">
+                <div class="text-center mb-2 ">Vehicle Details</div>
+                {%if vehicle.image%}
+                  <img src="{{vehicle.image.url}}" alt="" width="100%">
+                {%endif%}
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{vehicle.name}}</li>
+                <li class="list-group-item">{{vehicle.owner}}</li>
+                <li class="list-group-item">{{vehicle.fuel_type}}</li>
+                <li class="list-group-item">{{vehicle.kilometre}}</li>
+                <li class="list-group-item">{{vehicle.price}}</li>
+                <li class="list-group-item">{{vehicle.location}}</li>
+                <li class="list-group-item">{{vehicle.description}}</li>
+              </ul>
+          </div>
+      </div>
+      <div class="col-4">
+      </div>
+  </div>
+</div>
+
+{%endblock%}
