@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>olx</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
+    <script src="https://kit.fontawesome.com/c74c679b1d.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+        <div class="container">
+          <a class="navbar-brand" href="#">OLX</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{%url 'signin'%}">Logout</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+<h5 class="p-3"> welcome {{request.user}}</h5>
+<div class="container">
+    <div class="row mt-5 ">
+        <h2 class="text-center mb-3">Listing all Vehicles</h2>
+        <div class="col-1"></div>
+        <div class="col-10 ">
+            <table class="table table-striped table-hover  border border-3 border shadow">
+                <tr class="table table-info border border-dark">
+                    <td>Name</td>
+                    <td>Owner</td>
+                    <td>Fuel_type</td>
+                    <td>Kilometre</td>
+                    <td>Price</td>
+                    <td>Location</td>
+                    <td>Description</td>
+                    <td>Action</td>
+                </tr>
+                {%for vehicle in vehicles%}
+                <tr>
+                    <td>{{vehicle.name}}</td>
+                    <td>{{vehicle.user}}</td>
+                    <td>{{vehicle.fuel_type}}</td>
+                    <td>{{vehicle.kilometre}}</td>
+                    <td>{{vehicle.price}}</td>
+                    <td>{{vehicle.location}}</td>
+                    <td>{{vehicle.description}}</td>
+                    <td>
+                        
+                        <a href="{% url 'detail-vehicle' vehicle.id %}"><i class="fa-solid fa-circle-info me-3"></i></a>
+                        <a href="{% url 'remove-vehicle' vehicle.id %}"><i class="fa-solid fa-trash me-3" style="color: #e53206;"></i></a>
+                        <a href="{% url 'change-vehicle' vehicle.id %}"><i class="fa-solid fa-pen-to-square" style="color: #1134e4;"></i></a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+                <a href="{% url 'add-vehicle'%}"class="btn btn-outline-info mb-3 ">Add vehicle</a>
+            </table>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

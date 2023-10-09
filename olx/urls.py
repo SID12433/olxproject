@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path,include
 from task.views import VehicleCreateView,VehicleListView,VehicleDeleteView,VehicleDetailView,VehicleUpdateView,SignUpView,SignInView,signout_view
 
 urlpatterns = [
@@ -30,5 +30,6 @@ urlpatterns = [
     path("registration",SignUpView.as_view(),name="register"),
     path("login",SignInView.as_view(),name="login"),
     path("logout",signout_view,name="logout"),
+    path("v1/olx/",include("remainder.urls"))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
