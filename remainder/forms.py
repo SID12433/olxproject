@@ -25,7 +25,6 @@ class VehicleCreateForm(forms.ModelForm):
             "price":forms.NumberInput(attrs={"class":"form-control"}),
             "location":forms.TextInput(attrs={"class":"form-control"}),
             "description":forms.Textarea(attrs={"class":"form-control","rows":3}),
-   
     }
         
 class VehicleChangeForm(forms.ModelForm):

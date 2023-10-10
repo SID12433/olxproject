@@ -100,8 +100,9 @@ def remove_vehicle(request,*args,**kwargs):
     Vehicles.objects.get(id=id).delete()
     return redirect("list-vehicle")
 
-
+@signin_required
 def signout_view(request,*args,**kwargs):
     logout(request)
     return redirect("signin")
+
     

@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
-from django.views.generic import View
+from django.views.generic import View,TemplateView
 from task.forms import VehicleCreateForm,VehicleUpdateForm,RegistrationForm,LoginForm
 from task.models import Vehicles
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 
+
+class HomePageView(TemplateView):
+    template_name="home.html"
 
 class SignUpView(View):
     def get(self,request,*args,**kwargs):
