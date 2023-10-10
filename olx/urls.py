@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path,include
-from task.views import VehicleCreateView,VehicleListView,VehicleDeleteView,VehicleDetailView,VehicleUpdateView,SignUpView,SignInView,signout_view
+from task.views import VehicleCreateView,VehicleListView,VehicleDeleteView,VehicleDetailView,VehicleUpdateView,SignUpView,SignInView,signout_view,HomePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("",HomePageView.as_view(),name="home"),
     path('vehicles/add/',VehicleCreateView.as_view(),name="vehicle-add"),
     path('vehicles/all/',VehicleListView.as_view(),name="vehicle-list"),
     path('vehicles/<int:pk>/remove/',VehicleDeleteView.as_view(),name="vehicle-remove"),
