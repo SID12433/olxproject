@@ -17,7 +17,7 @@ class LoginForm(forms.Form):
 class VehicleCreateForm(forms.ModelForm):
     class Meta:
         model=Vehicles
-        fields=["name","fuel_type","kilometre","price","location","description"]
+        fields=["name","fuel_type","kilometre","price","location","image","description"]
         widgets={
             "name":forms.TextInput(attrs={"class":"form-control"}),
             "fuel_type":forms.TextInput(attrs={"class":"form-control"}),
@@ -30,7 +30,7 @@ class VehicleCreateForm(forms.ModelForm):
 class VehicleChangeForm(forms.ModelForm):
     class Meta:
         model=Vehicles
-        fields=["name","fuel_type","kilometre","price","location","description"]
+        fields=["name","fuel_type","kilometre","price","location","image","description"]
         widgets={
             "name":forms.TextInput(attrs={"class":"form-control"}),
             "fuel_type":forms.TextInput(attrs={"class":"form-control"}),

@@ -61,7 +61,7 @@ class VehicleCreateView(View):
         return render(request,"remainder/vehicle_add.html",{"form":form})
     
     def post(self,request,*args,**kwargs):
-        form=VehicleCreateForm(request.POST)
+        form=VehicleCreateForm(request.POST,files=request.FILES)
         if form.is_valid():
             # form.save()
             Vehicles.objects.create(**form.cleaned_data,user=request.user)
@@ -88,11 +88,24 @@ class VehicleDetailView(DetailView):
     model=Vehicles
     
 @method_decorator(signin_required,name="dispatch")               
-class VehicleUpdateView(UpdateView):
-    template_name="remainder/vehicle_edit.html"
-    success_url=reverse_lazy("list-vehicle")
-    form_class=VehicleChangeForm
-    model=Vehicles
+class VehicleUpdateView(View):
+    def get(self,request,*args,**kwargs):
+        id=kwargs.get("pk")
+        obj=Vehicles.objects.get(id=id)
+        form=VehicleChangeForm(instance=obj)
+        return render(request,"vehicle_edit.html",{"form":form})
+    
+    def post(self,request,*args,**kwargs):
+        id=kwargs.get("pk")
+        obj=Vehicles.objects.get(id=id)
+        form=VehicleChangeForm(request.POST,instance=obj,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("list-vehicle")
+        else:
+            return render(request,"vehicle_edit.html",{"form":form})
+
+
     
 @signin_required
 def remove_vehicle(request,*args,**kwargs):
